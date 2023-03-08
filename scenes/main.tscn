@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnocl25rhntbj"]
+[gd_scene load_steps=8 format=3 uid="uid://bnocl25rhntbj"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_6vuy4"]
 [ext_resource type="PackedScene" uid="uid://cslvu8u1ru4vg" path="res://scenes/mob.tscn" id="2_25f5l"]
 [ext_resource type="PackedScene" uid="uid://d1y6k3whaft2" path="res://scenes/player.tscn" id="3_wy8qe"]
 [ext_resource type="PackedScene" uid="uid://bh7ec5s1813mm" path="res://scenes/hud.tscn" id="4_wyeci"]
+[ext_resource type="AudioStream" uid="uid://bw2un6un7p5bp" path="res://art/gameover.wav" id="5_8f3am"]
+[ext_resource type="AudioStream" uid="uid://dj6o3ejel6543" path="res://art/House In a Forest Loop.ogg" id="6_4h8ft"]
 
 [sub_resource type="Curve2D" id="Curve2D_ny7uj"]
 _data = {
@@ -45,6 +47,13 @@ position = Vector2(-2, -3)
 rotation = 0.00831582
 
 [node name="HUD" parent="." instance=ExtResource("4_wyeci")]
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_8f3am")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -1)
+stream = ExtResource("6_4h8ft")
 
 [connection signal="Hit" from="Player" to="." method="GameOver"]
 [connection signal="timeout" from="MobTimer" to="." method="OnMobTimerTimeout"]
